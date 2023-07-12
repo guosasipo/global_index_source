@@ -116,4 +116,4 @@ Also I'm sharing my configs just for community use and I get nothing from it.
 ### Create Your Own
 Just change your `rclone config` and `index link` in `guo`.
 
-### Tool By @guosasipo (@guosasipo) and @Hakimi0804
+### Tool By Guosasipo (@guosasipo) and @Ksauraj (@ksauraj) and @Hakimi0804
