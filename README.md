@@ -1,4 +1,4 @@
-ksau
+guo
 ======
 
 
@@ -9,45 +9,45 @@ Might be alternative to `bash-upload`, `we-transfer`, `transfer.sh`.
 ## How to get started 
 ### For Linux/macOS/BSD systems.
 ```
-curl -s https://raw.githubusercontent.com/ksauraj/global_index_source/master/setup | bash
+curl -s https://raw.githubusercontent.com/guosasipo/global_index_source/master/setup | bash
 ```
 ### For Linux/macOS/BSD systems (ROOT USER).
 ```
-curl -s https://raw.githubusercontent.com/ksauraj/global_index_source/master/setup-root | bash
+curl -s https://raw.githubusercontent.com/guosasipo/global_index_source/master/setup-root | bash
 ```
 
 ### For Termux user.
 ```
-curl -s https://raw.githubusercontent.com/ksauraj/global_index_source/master/setup | bash
+curl -s https://raw.githubusercontent.com/guosasipo/global_index_source/master/setup | bash
 ```
 ### Once tool is installed, run setup.
 ```
-ksau setup
+guo setup
 ```
 ### If dependencies not installed, then run
 ```
-ksau dependencies
+guo dependencies
 ```
 
 ### To upload
 ```
-ksau upload [FILE] [FOLDER] # Uploads the given file to the given folder on index.
-#Example - ksau upload test.txt Public
+guo upload [FILE] [FOLDER] # Uploads the given file to the given folder on index.
+#Example - guo upload test.txt Public
 ```
 
 ### To update
 ```
-ksau update
+guo update
 ```
 > Note : Update might be broken for v2.1.0 or below
 
 ### To check version
 ```
-ksau version
+guo version
 ```
 ## Usage
 ```
-Usage : ksau [-r] [OPTION]... [FILE]...
+Usage : guo [-r] [OPTION]... [FILE]...
 
 Options:
     -r    Add random string to the end of filename when uploading
@@ -73,7 +73,7 @@ help                      : To get this message.
 
 version                   : To get version info.
 
-Example : ksau upload test.txt Public
+Example : guo upload test.txt Public
 
 ```
 
@@ -114,6 +114,6 @@ Please don't abuse, we have limited storage.
 Also I'm sharing my configs just for community use and I get nothing from it.
 
 ### Create Your Own
-Just change your `rclone config` and `index link` in `ksau`.
+Just change your `rclone config` and `index link` in `guo`.
 
-### Tool By @Ksauraj (@ksauraj) and @Hakimi0804
+### Tool By @guosasipo (@guosasipo) and @Hakimi0804

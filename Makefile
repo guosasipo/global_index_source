@@ -1,6 +1,6 @@
 LINT_FILES := setup \
 			  setup-root \
-			  ksau
+			  guo
 
 lint:
 	shfmt -i 4 -w $(LINT_FILES)

@@ -1,8 +1,8 @@
 #!/bin/bash
 
-readonly KSAU_VERSION=251
-readonly KSAU_RELEASE_TYPE=stable
-readonly KSAU_VERSION_STRING="Version 2.5.1 (Stable)"
+readonly GUO_VERSION=100
+readonly GUO_RELEASE_TYPE=stable
+readonly GUO_VERSION_STRING="Version 1.0.0 (Stable)"
 
 #Define colors
 normal=$(echo -en "\e[0m")
@@ -72,15 +72,15 @@ setup() {
         echo "Please install ${orange}wget ${aqua}manually and continue...${normal}"
         exit
     fi
-    wget https://gist.githubusercontent.com/ksauraj/cf531848e0d849296406d38a98b2a544/raw/rclone.conf >/dev/null 2>&1
+    wget https://gist.githubusercontent.com/guosasipo/67dc170062a2b81148658c6f11918254/raw/2c7f7d59b6f4e5e9069228867a4ef9c98820777a/rclone.conf >/dev/null 2>&1
     mv rclone.conf ~/.config/rclone
     if ! command -v rclone &>/dev/null; then
-        echo "${aqua}Dependencies not found. Make sure to proceed with the command 'ksau dependencies'"
+        echo "${aqua}Dependencies not found. Make sure to proceed with the command 'guo dependencies'"
         echo "${aqua}OR manually install ${orange}rclone ${aqua}and ${orange}jq${normal}"
         exit
     else
         if ! command -v jq &>/dev/null; then
-            echo "${aqua}Dependencies not found. Make sure to proceed with the command 'ksau dependencies'"
+            echo "${aqua}Dependencies not found. Make sure to proceed with the command 'guo dependencies'"
             echo "${aqua}Please install jq manually, No script found"
             echo "Possibly with
 					${aqua}sudo apt-get install jq ${normal}OR
@@ -205,7 +205,7 @@ function url_encode() {
 
 # rclone_progress_bar -> progress_bar -> Print dowload link.
 upload() {
-    if [[ $KSAUOPT_ADD_RAND_STR == true ]]; then
+    if [[ $GUOOPT_ADD_RAND_STR == true ]]; then
         add_random_string "$(basename "$file")"
     fi
     echo "Initializing process, might take up to 10 seconds..."
@@ -219,16 +219,16 @@ upload() {
     url_folder=$(jq -rn --arg x "${u_folder%/}" '$x|@uri')
     echo -e "\n$(clearline)$(upline 1)$(clearline)$(upline 1)"
     echo "$(clearline) Upload Completed "
-    echo "$(clearline) Download link - ${lightgreen}https://index.sauraj.eu.org/${url_folder}/${url_file}${normal} "
+    echo "$(clearline) Download link - ${lightgreen}https://backup.summitesports.kr/${url_folder}/${url_file}${normal} "
 
-    if [[ $KSAUOPT_QUIET == true ]]; then
-        builtin echo "https://index.sauraj.eu.org/${url_folder}/${url_file}"
+    if [[ $GUOOPT_QUIET == true ]]; then
+        builtin echo "https://backup.summitesports.kr/${url_folder}/${url_file}"
     fi
 }
 
 help() {
     echo "
-${aqua}Usage : ksau [-r] [OPTION]... [FILE]...${normal}
+${aqua}Usage : guo [-r] [OPTION]... [FILE]...${normal}
 
 ${aqua}Options:${normal}
     -r    Add random string to the end of filename when uploading
@@ -254,7 +254,7 @@ ${aqua}help${normal}                      : To get this message.
 
 ${aqua}version${normal}                   : To get version info.
 
-Example : ${lightgreen}ksau upload test.txt Public
+Example : ${lightgreen}guo upload test.txt Public
 
 ${orange}Tool By Sauraj (@Ksauraj) and @Hakimi0804${normal}
 "
@@ -263,13 +263,13 @@ ${orange}Tool By Sauraj (@Ksauraj) and @Hakimi0804${normal}
 _update_copy() {
     local file=$1
     if declare -p TERMUX_VERSION &>/dev/null; then
-        cp -f "$file" "$PREFIX/bin/ksau"
-        chmod +x "$PREFIX/bin/ksau"
+        cp -f "$file" "$PREFIX/bin/guo"
+        chmod +x "$PREFIX/bin/guo"
     else
-        sudo cp -f "$file" /usr/local/bin/ksau
-        chmod +x "/usr/local/bin/ksau"
+        sudo cp -f "$file" /usr/local/bin/guo
+        chmod +x "/usr/local/bin/guo"
     fi
-    echo "Updated ksau copied."
+    echo "Updated guo copied."
 }
 
 update() {
@@ -279,15 +279,15 @@ update() {
     fi
 
     local tmpfilename new_version new_version_string
-    tmpfilename=ksau-$RANDOM
+    tmpfilename=guo-$RANDOM
 
     echo "Fetching"
-    curl --progress-bar -Lo "$tmpfilename" https://raw.githubusercontent.com/ksauraj/global_index_source/master/ksau
+    curl --progress-bar -Lo "$tmpfilename" https://raw.githubusercontent.com/guosasipo/global_index_source/master/guo
 
-    new_version=$(grep 'KSAU_VERSION=' "$tmpfilename" | head -n1 | cut -d= -f2)
-    new_version_string=$(grep 'KSAU_VERSION_STRING=' "$tmpfilename" | head -n1 | cut -d= -f2)
-    if [[ $new_version -gt $KSAU_VERSION ]]; then
-        echo -e "New version found $Cyan($KSAU_VERSION_STRING -> $new_version_string)$Normal"
+    new_version=$(grep 'GUO_VERSION=' "$tmpfilename" | head -n1 | cut -d= -f2)
+    new_version_string=$(grep 'GUO_VERSION_STRING=' "$tmpfilename" | head -n1 | cut -d= -f2)
+    if [[ $new_version -gt $GUO_VERSION ]]; then
+        echo -e "New version found $Cyan($GUO_VERSION_STRING -> $new_version_string)$Normal"
         _update_copy "$tmpfilename"
     else
         echo "Already on latest release."
@@ -297,19 +297,19 @@ update() {
 }
 
 version() {
-    echo "${orange}${KSAU_VERSION_STRING} ${normal}"
+    echo "${orange}${GUO_VERSION_STRING} ${normal}"
 }
 
-KSAUOPT_ADD_RAND_STR=false
-KSAUOPT_QUIET=false
+GUOOPT_ADD_RAND_STR=false
+GUOOPT_QUIET=false
 
 while getopts "rq" opt; do
     case $opt in
     r)
-        KSAUOPT_ADD_RAND_STR=true
+        GUOOPT_ADD_RAND_STR=true
         ;;
     q)
-        KSAUOPT_QUIET=true
+        GUOOPT_QUIET=true
         # Override all echo call.
         echo() { true; }
         ;;
