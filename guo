@@ -219,10 +219,10 @@ upload() {
     url_folder=$(jq -rn --arg x "${u_folder%/}" '$x|@uri')
     echo -e "\n$(clearline)$(upline 1)$(clearline)$(upline 1)"
     echo "$(clearline) Upload Completed "
-    echo "$(clearline) Download link - ${lightgreen}https://backup.summitesports.kr/${url_folder}/${url_file}${normal} "
+    echo "$(clearline) Download link - ${lightgreen}https://cloud.guosasipo.dev/${url_folder}/${url_file}${normal} "
 
     if [[ $GUOOPT_QUIET == true ]]; then
-        builtin echo "https://backup.summitesports.kr/${url_folder}/${url_file}"
+        builtin echo "https://cloud.guosasipo.dev/${url_folder}/${url_file}"
     fi
 }
 
